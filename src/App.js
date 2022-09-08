@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { CompA } from "./Comp-A";
+import { CompB } from "./comp-B";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	// Define the state value
+	const [clickCount, setClickCount] = useState(0);
+	return (
+		<div className="App">
+			{/* control the state value with setClickCount function */}
+			<button onClick={() => setClickCount(currentCount => currentCount + 1)}>
+				Click to Count
+			</button>
+
+			{/* pass down the state value as a prop to both components */}
+			<CompA countA={clickCount} />
+			<CompB countB={clickCount} />
+		</div>
+	);
 }
 
 export default App;
